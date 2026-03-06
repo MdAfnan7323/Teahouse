@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lala Tea House & Juice Point • Anzar Lala</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Poppins:wght@400;500;600&amp;display=swap');
+        
+        :root {
+            --yellow: #facc15;
+        }
+        
+        .tail-container {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .logo-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .hero-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('img/banner.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 25px 50px -12px rgb(250 204 21 / 0.25);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #facc15;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .price-tag {
+            background: linear-gradient(135deg, #facc15, #eab308);
+        }
+    </style>
+</head>
+<body class="tail-container bg-zinc-950 text-white overflow-x-hidden">
+
+    <!-- NAVBAR -->
+    <nav class="bg-black/90 backdrop-blur-lg border-b border-yellow-400/30 fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center text-3xl shadow-lg shadow-yellow-400/50">
+                    ☕
+                </div>
+                <div>
+                    <span class="logo-font text-4xl font-bold tracking-tighter text-yellow-400">Lala</span>
+                    <p class="text-[10px] text-white/70 -mt-1 tracking-[3px]">TEA HOUSE</p>
+                </div>
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#home" onclick="smoothScrollTo('home')" class="nav-link text-white hover:text-yellow-400">HOME</a>
+                <a href="#menu" onclick="smoothScrollTo('menu')" class="nav-link text-white hover:text-yellow-400">MENU</a>
+                <a href="#about" onclick="smoothScrollTo('about')" class="nav-link text-white hover:text-yellow-400">ABOUT</a>
+                <a href="#contact" onclick="smoothScrollTo('contact')" class="nav-link text-white hover:text-yellow-400">CONTACT</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <!-- Cart -->
+                <button onclick="toggleCart()" class="relative flex items-center gap-2 bg-zinc-900 hover:bg-yellow-400 hover:text-black transition-all px-5 py-2.5 rounded-2xl text-sm font-semibold">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>MY ORDER</span>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full">0</span>
+                </button>
+
+                <!-- WhatsApp -->
+                <a href="https://wa.me/919021007843" target="_blank"
+                   class="flex items-center gap-2 bg-green-500 hover:bg-green-600 transition-all px-6 py-2.5 rounded-2xl text-sm font-semibold">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span class="hidden sm:inline">ORDER NOW</span>
+                </a>
+
+                <!-- Mobile Hamburger -->
+                <button id="hamburger" onclick="toggleMobileMenu()" class="md:hidden text-3xl">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black border-t border-yellow-400/20 py-6">
+            <div class="flex flex-col items-center gap-6 text-lg font-medium">
+                <a href="#home" onclick="toggleMobileMenu();smoothScrollTo('home')" class="hover:text-yellow-400">HOME</a>
+                <a href="#menu" onclick="toggleMobileMenu();smoothScrollTo('menu')" class="hover:text-yellow-400">MENU</a>
+                <a href="#about" onclick="toggleMobileMenu();smoothScrollTo('about')" class="hover:text-yellow-400">ABOUT US</a>
+                <a href="#contact" onclick="toggleMobileMenu();smoothScrollTo('contact')" class="hover:text-yellow-400">CONTACT</a>
+                <a href="https://wa.me/919021007843" target="_blank" class="text-green-400 flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp"></i> WHATSAPP ORDER
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="home" class="hero-bg h-screen flex items-center relative">
+        <div class="max-w-5xl mx-auto px-6 text-center z-10">
+            <div class="inline-flex items-center gap-3 bg-black/60 backdrop-blur-md px-8 py-3 rounded-3xl border border-yellow-400/30 mb-8">
+                <span class="text-yellow-400 text-2xl">★</span>
+                <span class="uppercase tracking-[4px] text-sm font-semibold">Anzar Lala's</span>
+                <span class="text-yellow-400 text-2xl">★</span>
+            </div>
+            
+            <h1 class="logo-font text-7xl md:text-8xl font-bold leading-none tracking-tighter mb-4">
+                LALA<br><span class="text-yellow-400">TEA HOUSE</span>
+            </h1>
+            <p class="text-2xl md:text-3xl text-white/90 mb-2">&amp; JUICE POINT</p>
+            
+            <p class="max-w-md mx-auto text-lg text-white/70 mb-12">
+                Near Post Office Kinwat • Fresh Ganna Juice • Pure Chai • Cold Lassi
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-5 justify-center">
+                <button onclick="smoothScrollTo('menu')" 
+                        class="bg-yellow-400 hover:bg-amber-300 text-black font-bold text-lg px-12 py-6 rounded-3xl transition-all flex items-center justify-center gap-3 group">
+                    <span>SEE FULL MENU</span>
+                    <i class="fa-solid fa-arrow-right group-active:rotate-45 transition"></i>
+                </button>
+                
+                <a href="https://wa.me/919021007843?text=Hello%20Lala%20Tea%20House!%20I%20want%20to%20order%20fresh%20juices%20%26%20chai%20" 
+                   target="_blank"
+                   class="border-2 border-white/80 hover:border-yellow-400 hover:text-yellow-400 font-bold text-lg px-12 py-6 rounded-3xl transition-all flex items-center justify-center gap-3">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i>
+                    <span>ORDER ON WHATSAPP</span>
+                </a>
+            </div>
+
+            <div class="mt-20 flex justify-center gap-8 text-sm">
+                <div class="text-center">
+                    <div class="text-yellow-400 text-3xl font-bold">15₹</div>
+                    <div class="text-white/60">Ganna Juice</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-yellow-400 text-3xl font-bold">20₹</div>
+                    <div class="text-white/60">Pineapple Juice</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-yellow-400 text-3xl font-bold">5₹</div>
+                    <div class="text-white/60">Chai Half</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-xs tracking-widest">
+            <div class="w-px h-12 bg-gradient-to-b from-transparent via-yellow-400 to-transparent"></div>
+            SCROLL
+        </div>
+    </section>
+
+    <!-- MENU SECTION -->
+    <section id="menu" class="py-24 bg-zinc-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16">
+                <div>
+                    <span class="uppercase text-yellow-400 tracking-[4px] text-sm font-semibold">Fresh &amp; Pure</span>
+                    <h2 class="logo-font text-6xl font-bold">Our Menu</h2>
+                </div>
+                <div class="text-right mt-4 md:mt-0">
+                    <p class="text-white/60 max-w-xs">Everything made fresh daily • No preservatives • Best prices in Kinwat</p>
+                </div>
+            </div>
+
+            <!-- Menu Grid -->
+            <div id="menu-grid" class="menu-grid">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-24 bg-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <img src="img/WhatsApp Image 2026-03-01 at 7.02.35 PM.jpeg" 
+                         class="rounded-3xl shadow-2xl" alt="Lala Tea House">
+                </div>
+                
+                <div class="space-y-8">
+                    <div class="inline-flex items-center gap-2 bg-yellow-400/10 px-6 py-3 rounded-2xl">
+                        <span class="text-4xl">👑</span>
+                        <div>
+                            <span class="text-yellow-400 font-bold">ANZAR LALA</span><br>
+                            <span class="text-sm text-white/60">Owner &amp; Founder</span>
+                        </div>
+                    </div>
+                    
+                    <h2 class="text-5xl font-bold leading-tight">Serving happiness<br>one cup at a time</h2>
+                    
+                    <div class="prose prose-invert max-w-none text-lg text-white/80">
+                        <p>Welcome to <span class="text-yellow-400 font-semibold">Lala Tea House &amp; Juice Point</span> Near Post Office Kinwat</p>
+                        <p>Since opening, we have been serving the freshest sugarcane juice, pineapple juice, creamy lassi, and the most authentic masala chai in the region at the most affordable prices.</p>
+                    </div>
+                    
+                    <div class="flex items-center gap-8 pt-6 border-t border-white/10">
+                        <div>
+                            <div class="text-4xl font-bold text-yellow-400">5000+</div>
+                            <div class="text-sm text-white/60">Happy Customers</div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-bold text-yellow-400">100%</div>
+                            <div class="text-sm text-white/60">Fresh Daily</div>
+                        </div>
+                    </div>
+                    
+                    <a href="https://wa.me/919021007843" target="_blank"
+                       class="inline-flex items-center gap-4 group">
+                        <div class="w-14 h-14 bg-green-500 rounded-2xl flex items-center justify-center text-3xl group-active:scale-95 transition">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <div class="font-semibold text-xl">Message us on WhatsApp</div>
+                            <div class="text-green-400">+91 90210 07843</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT / LOCATION -->
+    <section id="contact" class="py-24 bg-zinc-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-yellow-400 text-sm font-bold tracking-widest">VISIT US</span>
+                <h2 class="text-5xl font-bold mt-3">Come taste the freshness</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Map -->
+                <div class="rounded-3xl overflow-hidden border border-yellow-400/20">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.123456789!2d74.123456789!3d18.123456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDA3JzI0LjAiTiA3NMKwMDcnMjQuMCJF!5e0!3m2!1sen!2sin!4v1700000000000" 
+                            width="100%" height="420" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+
+                <!-- Info -->
+                <div class="space-y-10">
+                    <div class="flex gap-6">
+                        <i class="fa-solid fa-location-dot text-4xl text-yellow-400 mt-1"></i>
+                        <div>
+                            <div class="font-semibold text-xl">Lala Tea House &amp; Juice Point</div>
+                            <div class="text-white/70">Post office Road Kinwat<br>District Nanded, Maharashtra</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-6">
+                        <i class="fa-solid fa-phone text-4xl text-yellow-400 mt-1"></i>
+                        <div>
+                            <div class="font-semibold text-xl">Call or WhatsApp</div>
+                            <a href="tel:919021007843" class="text-3xl font-bold text-white hover:text-yellow-400">90210 07843</a>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-6">
+                        <i class="fa-solid fa-clock text-4xl text-yellow-400 mt-1"></i>
+                        <div>
+                            <div class="font-semibold text-xl">Opening Hours</div>
+                            <div class="space-y-1 text-white/70">
+                                <div>Monday - Sunday: <span class="font-medium text-white">7:00 AM - 10:00 PM</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-8 border-t border-white/10">
+                        <button onclick="window.location.href='https://wa.me/919021007843'" 
+                                class="w-full bg-gradient-to-r from-green-500 to-emerald-500 py-8 rounded-3xl text-2xl font-bold flex items-center justify-center gap-4 hover:scale-105 transition">
+                            <i class="fa-brands fa-whatsapp text-4xl"></i>
+                            ORDER RIGHT NOW
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black py-12 border-t border-yellow-400/10">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex justify-center items-center gap-3 mb-6">
+                <div class="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center text-3xl">☕</div>
+                <span class="logo-font text-4xl font-bold text-yellow-400">Lala</span>
+            </div>
+            <p class="text-white/40 text-sm">© 2026 Lala Tea House &amp; Juice Point • Kinwat<br>Made with ❤️ for the best customers</p><br>
+          <p class="text-sm" style="text-decoration-color:white;">Developed & Maintained By<br>MD AFNAN</p>
+        </div>
+    </footer>
+
+    <!-- CART MODAL -->
+    <div id="cart-modal" class="hidden fixed inset-0 bg-black/80 z-[100] flex items-end md:items-center justify-center">
+        <div onclick="event.stopImmediatePropagation()" 
+             class="bg-zinc-900 w-full max-w-lg md:rounded-3xl rounded-t-3xl overflow-hidden">
+            
+            <!-- Header -->
+            <div class="flex items-center justify-between p-6 border-b border-white/10">
+                <h3 class="text-2xl font-bold">Your Order</h3>
+                <button onclick="toggleCart()" class="text-3xl text-white/60 hover:text-white">✕</button>
+            </div>
+            
+            <!-- Cart Items -->
+            <div id="cart-items" class="max-h-[60vh] overflow-auto p-6 space-y-6">
+                <!-- JS populated -->
+            </div>
+            
+            <!-- Total -->
+            <div class="p-6 border-t border-white/10 bg-black/40">
+                <div class="flex justify-between items-center text-xl mb-6">
+                    <span class="font-medium">Total</span>
+                    <span id="cart-total" class="font-bold text-yellow-400 text-3xl">₹0</span>
+                </div>
+                
+                <button onclick="placeOrderWhatsApp()" 
+                        class="w-full bg-green-500 hover:bg-green-600 py-6 rounded-2xl text-xl font-bold flex items-center justify-center gap-3">
+                    <i class="fa-brands fa-whatsapp text-3xl"></i>
+                    SEND ORDER ON WHATSAPP
+                </button>
+                
+                <button onclick="clearCart()" 
+                        class="mt-4 w-full text-white/60 hover:text-red-400 transition py-4 text-sm">
+                    Clear Order
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tailwind script already loaded via CDN
+        
+        function initTailwind() {
+            // Already initialized by CDN
+        }
+        
+        // Menu Items (exact from your images)
+        const menuItems = [
+            {
+                id: 1,
+                name: "Ganna Juice",
+                price: 15,
+                desc: "Fresh sugarcane juice",
+                img: "img/WhatsApp Image 2026-03-01 at 7.02.36 PM (1).jpeg"
+            },
+            {
+                id: 2,
+                name: "Pineapple Juice",
+                price: 20,
+                desc: "Sweet & fresh pineapple",
+                img: "img/WhatsApp Image 2026-03-01 at 7.03.40 PM.jpeg"
+            },
+            {
+                id: 3,
+                name: "Lassi",
+                price: 20,
+                desc: "Creamy chilled lassi",
+                img: "img/WhatsApp Image 2026-03-01 at 7.02.36 PM.jpeg"
+            },
+            {
+                id: 4,
+                name: "Chai Full",
+                price: 7,
+                desc: "Large cup masala chai",
+                img: "img/fullChai.png"
+            },
+            {
+                id: 5,
+                name: "Chai Half",
+                price: 5,
+                desc: "Small cup masala chai",
+                img: "img/half.png"
+            },
+            {
+                id: 6,
+                name: "Coffee",
+                price: 15,
+                desc: "Hot strong coffee",
+                img: "img/Coffee.png"
+            },
+            {
+                id: 7,
+                name: "Coffee + Boost",
+                price: 15,
+                desc: "Coffee with extra energy",
+                img: "img/coffeeBoost.png"
+            }
+        ];
+        
+        let cart = [];
+        
+        // Render Menu
+        function renderMenu() {
+            const container = document.getElementById('menu-grid');
+            container.innerHTML = '';
+            
+            menuItems.forEach(item => {
+                const card = document.createElement('div');
+                card.className = `bg-zinc-800 rounded-3xl overflow-hidden card-hover`;
+                card.innerHTML = `
+                    <div class="relative">
+                        <img src="${item.img}" class="w-full h-64 object-cover" alt="${item.name}">
+                        <div class="price-tag absolute top-5 right-5 text-black font-bold text-2xl px-5 py-1 rounded-2xl shadow-lg">
+                            ₹${item.price}
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-1">${item.name}</h3>
+                        <p class="text-white/60 text-sm mb-6">${item.desc}</p>
+                        <button onclick="addToCart(${item.id})" 
+                                class="w-full bg-yellow-400 hover:bg-amber-300 text-black font-bold py-4 rounded-2xl transition-all active:scale-95">
+                            ADD TO ORDER
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+        
+        // Add to cart
+        function addToCart(id) {
+            const item = menuItems.find(i => i.id === id);
+            const existing = cart.find(cartItem => cartItem.id === id);
+            
+            if (existing) {
+                existing.quantity = (existing.quantity || 1) + 1;
+            } else {
+                cart.push({...item, quantity: 1});
+            }
+            
+            updateCartCount();
+            showToast(`${item.name} added to cart!`);
+        }
+        
+        function updateCartCount() {
+            let count = 0;
+            cart.forEach(item => count += item.quantity || 1);
+            document.getElementById('cart-count').textContent = count;
+        }
+        
+        // Toast notification
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.style.position = 'fixed';
+            toast.style.bottom = '30px';
+            toast.style.left = '50%';
+            toast.style.transform = 'translateX(-50%)';
+            toast.style.backgroundColor = '#facc15';
+            toast.style.color = '#000';
+            toast.style.padding = '16px 32px';
+            toast.style.borderRadius = '9999px';
+            toast.style.fontWeight = '600';
+            toast.style.boxShadow = '0 10px 15px -3px rgb(0 0 0 / 0.3)';
+            toast.style.zIndex = '9999';
+            toast.style.opacity = '0';
+            toast.style.transition = 'all 0.3s';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => toast.style.opacity = '1', 10);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 2800);
+        }
+        
+        // Toggle Cart Modal
+        function toggleCart() {
+            const modal = document.getElementById('cart-modal');
+            if (modal.classList.contains('hidden')) {
+                renderCart();
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            } else {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+        
+        function renderCart() {
+            const container = document.getElementById('cart-items');
+            container.innerHTML = '';
+            
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-20 text-white/40">
+                        <i class="fa-solid fa-cart-shopping text-6xl mb-6"></i>
+                        <p class="text-xl">Your cart is empty</p>
+                    </div>
+                `;
+                document.getElementById('cart-total').textContent = '₹0';
+                return;
+            }
+            
+            let total = 0;
+            
+            cart.forEach((item, index) => {
+                const qty = item.quantity || 1;
+                const itemTotal = item.price * qty;
+                total += itemTotal;
+                
+                const div = document.createElement('div');
+                div.className = "flex gap-5 bg-zinc-800 rounded-2xl p-4";
+                div.innerHTML = `
+                    <img src="${item.img}" class="w-20 h-20 object-cover rounded-xl">
+                    <div class="flex-1">
+                        <div class="flex justify-between">
+                            <div class="font-semibold">${item.name}</div>
+                            <div class="font-bold text-yellow-400">₹${itemTotal}</div>
+                        </div>
+                        <div class="text-white/60 text-sm">${item.desc}</div>
+                        
+                        <div class="flex items-center justify-between mt-4">
+                            <div class="flex items-center border border-white/30 rounded-2xl overflow-hidden">
+                                <button onclick="changeQuantity(${index}, -1)" class="w-9 h-9 hover:bg-white/10 flex items-center justify-center text-xl font-bold">-</button>
+                                <div class="px-6 font-semibold">${qty}</div>
+                                <button onclick="changeQuantity(${index}, 1)" class="w-9 h-9 hover:bg-white/10 flex items-center justify-center text-xl font-bold">+</button>
+                            </div>
+                            
+                            <button onclick="removeFromCart(${index})" class="text-red-400 hover:text-red-500">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+            
+            document.getElementById('cart-total').textContent = `₹${total}`;
+        }
+        
+        function changeQuantity(index, change) {
+            cart[index].quantity = (cart[index].quantity || 1) + change;
+            if (cart[index].quantity < 1) cart[index].quantity = 1;
+            renderCart();
+            updateCartCount();
+        }
+        
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            renderCart();
+            updateCartCount();
+        }
+        
+        function clearCart() {
+            if (confirm("Clear entire cart?")) {
+                cart = [];
+                renderCart();
+                updateCartCount();
+            }
+        }
+        
+        function placeOrderWhatsApp() {
+            if (cart.length === 0) return;
+            
+            let message = "Hello Anzar bhai! My order for Lala Tea House:\n\n";
+            
+            let total = 0;
+            cart.forEach(item => {
+                const qty = item.quantity || 1;
+                message += `${qty} × ${item.name} = ₹${item.price * qty}\n`;
+                total += item.price * qty;
+            });
+            
+            message += `\nTotal: ₹${total}\n\nPlease deliver to: [Your Address]`;
+            
+            const whatsappUrl = `https://wa.me/919021007843?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+            
+            // Clear cart after sending
+            setTimeout(() => {
+                cart = [];
+                updateCartCount();
+                toggleCart();
+            }, 1500);
+        }
+        
+        // Mobile menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+        
+        // Smooth scroll
+        function smoothScrollTo(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+            }
+        }
+        
+        // Close cart when clicking outside
+        document.getElementById('cart-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                toggleCart();
+            }
+        });
+        
+        // Keyboard escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape") {
+                const modal = document.getElementById('cart-modal');
+                if (!modal.classList.contains('hidden')) toggleCart();
+            }
+        });
+        
+        // Initialize everything
+        window.onload = function() {
+            renderMenu();
+            updateCartCount();
+            
+            // Make navbar transparent to solid on scroll
+            window.addEventListener('scroll', () => {
+                const nav = document.querySelector('nav');
+                if (window.scrollY > 100) {
+                    nav.classList.add('bg-black/95');
+                } else {
+                    nav.classList.remove('bg-black/95');
+                }
+            });
+            
+            console.log('%cLala Tea House Website Loaded Successfully! 🔥', 'color:#facc15; font-size:14px; font-weight:bold');
+        };
+    </script>
+</body>
+</html>
