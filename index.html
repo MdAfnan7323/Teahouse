@@ -613,7 +613,6 @@
         message += `${qty} × ${item.name} ─ ₹${item.price * qty}\n`;
     });
 
-    
     message += "\n───────────────────────\n";
     message += `Subtotal:          ₹${subtotal}\n`;
     message += `Delivery Charge:   ₹${deliveryCharge}\n`;
@@ -623,22 +622,17 @@
     message += "Delivery Address:\n[Apna pura address yahan likh dena]\n\n";
     message += "Landmark: ________________\n";
     message += "Phone: ________________\n";
-    message += "Any special note: ________________\n\n";
-
-    // Important instruction for live location
-    message += "Delivery ke liye live location bhej rahe hoon.\n";
-    message += "Please wait – abhi live location share kar raha hoon (8 hours ke liye) taaki delivery boy easily pahunch sake.\n";
-    message += "Location bhejne ke baad confirm kar dena please!";
+    message += "Any special note: ________________";
 
     const whatsappUrl = `https://wa.me/919021007843?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
 
-    // Clear cart after opening WhatsApp (small delay)
+    // Clear cart after opening WhatsApp (small delay so user sees success)
     setTimeout(() => {
         cart = [];
         updateCartCount();
         toggleCart();
-        alert("Order WhatsApp pe bhej diya gaya hai!\n\nAb chat khulega – wahan se turant 'Share live location' karke 8 hours ke liye apni live location bhej dena.\n(Attachment > Location > Share live location)");
+        alert("Order WhatsApp pe bhej diya gaya hai!\nThank you for ordering from Lala Tea House ☕");
     }, 800);
 }
         
